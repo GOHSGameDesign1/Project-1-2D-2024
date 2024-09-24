@@ -34,10 +34,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Lose Scene");
     }
 
-    public void WinGame()
+    public void NextLevel()
     {
         /* TODO 7.2: Change the scene when this function is called to the appropriate scene using SceneManager.LoadScene() */
-        SceneManager.LoadScene("Win Scene");
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        else
+        {
+            SceneManager.LoadScene("Win Scene");
+        }
     }
 
     public void MainMenu()

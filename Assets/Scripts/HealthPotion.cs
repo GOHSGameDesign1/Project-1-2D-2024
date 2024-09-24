@@ -8,6 +8,8 @@ public class HealthPack : MonoBehaviour
     [SerializeField]
     [Tooltip("amount the player heals")]
     private int healAmount;
+    [Tooltip("Does the potion hurt the player instead?")]
+    [SerializeField] private bool hurtsPlayer;
     #endregion
 
     #region Heal_functions
@@ -18,7 +20,13 @@ public class HealthPack : MonoBehaviour
          * HINT: The variable, other, contains a reference to the object that collides with this health potion. */
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().Heal(healAmount);
+            if (!hurtsPlayer)
+            {
+                other.GetComponent<PlayerController>().Heal(healAmount);
+            } else
+            {
+                other.GetComponent<PlayerController>().TakeDamage(healAmount);
+            }
             FindObjectOfType<AudioManager>().Play("Potion");
             Destroy(gameObject);
         }

@@ -10,7 +10,7 @@ public class EndTriggerScript : MonoBehaviour
         if (coll.CompareTag("Player"))
         {
             GameObject gm = GameObject.FindWithTag("GameController");
-            gm.GetComponent<GameManager>().WinGame();
+            gm.GetComponent<GameManager>().NextLevel();
         }
     }
 }
